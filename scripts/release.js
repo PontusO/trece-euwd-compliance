@@ -45,6 +45,13 @@ function bail(msg) {
 }
 
 // --- Preflight checks ------------------------------------------------------
+//
+// Every check below runs BEFORE any disk-mutating step (version bump, build,
+// commit, tag). A failure here leaves the working tree untouched.
+
+if (!fs.existsSync(path.join(root, 'node_modules', '.bin', 'esbuild'))) {
+  bail('esbuild not installed — run `npm install` first');
+}
 
 if (shCapture('git status --porcelain')) {
   bail('working tree is not clean — commit or stash changes first');
