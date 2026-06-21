@@ -1,5 +1,25 @@
 # Changelog
 
+## 1.4.1
+- **Bug fix and layout change:**
+  Fix duplicate Withdrawals menu and consolidate the detail-page layout
+    
+  Trece_WDEU_Settings re-registered the top-level Withdrawals menu under
+  the same slug Trece_WDEU_Admin_Log already owned. WP doesn't dedupe
+  add_menu_page() by slug, so the sidebar showed two Withdrawals entries
+  and a single page load fired both callbacks, rendering the request list
+  twice. Settings now only registers its submenu against the existing
+  parent and the orphan render_top_level_page helper is removed.
+    
+  On the request detail page, the right-column sidebar (width:35%) sat
+  wider than WP's default 281px reservation on #post-body-content, so the
+  Status / Audit Trail boxes overflowed leftward and didn't line up with
+  the main-column boxes. Dropped the two-column layout in favour of a
+  single full-width stack, and merged the Audit Trail content into the
+  Status box (dropping duplicated Current Status / Admin Comment rows
+  already shown in the status form) so the page isn't padded with sparse
+  half-empty boxes.
+
 ## 1.4.0
 - **Fix unauthenticated ownership-check bypass on public withdrawal form:** The 
   step-2 branch of render() reconstructed the review payload from raw  $_POST 
