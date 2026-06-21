@@ -74,6 +74,17 @@
         </label>
     </div>
 
+    <?php if ( class_exists( 'Trece_WDEU_Altcha' ) && Trece_WDEU_Altcha::is_enabled() ) :
+        $trece_wdeu_altcha_challenge = Trece_WDEU_Altcha::create_challenge();
+        ?>
+        <div class="trece-wdeu-field trece-wdeu-altcha">
+            <altcha-widget
+                auto="onsubmit"
+                challenge="<?php echo esc_attr( wp_json_encode( $trece_wdeu_altcha_challenge ) ); ?>"
+            ></altcha-widget>
+        </div>
+    <?php endif; ?>
+
     <button type="submit" class="trece-wdeu-btn trece-wdeu-btn-primary">
         <?php esc_html_e( 'Continue to review', 'trece-withdrawal-eu' ); ?>
     </button>

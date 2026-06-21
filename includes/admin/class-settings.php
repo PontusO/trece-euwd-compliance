@@ -115,6 +115,7 @@ class Trece_WDEU_Settings {
 		$this->add_section( 'excluded_notices', __( 'Excluded Notices', 'trece-withdrawal-eu' ) );
 		$this->add_section( 'trader_info', __( 'Trader Info (Annex I.B)', 'trece-withdrawal-eu' ) );
 		$this->add_section( 'email', __( 'Email', 'trece-withdrawal-eu' ) );
+		$this->add_section( 'spam_protection', __( 'Spam Protection', 'trece-withdrawal-eu' ) );
 		$this->add_section( 'advanced', __( 'Advanced', 'trece-withdrawal-eu' ) );
 
 		// ── General ────────────────────────────────────────────────────
@@ -148,6 +149,9 @@ class Trece_WDEU_Settings {
 		// ── Email ──────────────────────────────────────────────────────
 		$this->add_field( 'email', 'admin_email', __( 'Admin Notification Email [MANDATORY]', 'trece-withdrawal-eu' ), 'render_email_field' );
 		$this->add_field( 'email', 'show_in_emails', __( 'Show Withdrawal Link in Order Emails [RECOMMENDED]', 'trece-withdrawal-eu' ), 'render_checkbox_field' );
+
+		// ── Spam Protection ────────────────────────────────────────────
+		$this->add_field( 'spam_protection', 'spam_protection_altcha', __( 'Enable ALTCHA challenge on the public withdrawal form [RECOMMENDED]', 'trece-withdrawal-eu' ), 'render_checkbox_field' );
 
 		// ── Advanced ───────────────────────────────────────────────────
 		$this->add_field( 'advanced', 'eligible_statuses', __( 'Eligible Order Statuses [RECOMMENDED]', 'trece-withdrawal-eu' ), 'render_eligible_statuses_field' );
@@ -513,6 +517,9 @@ class Trece_WDEU_Settings {
 		// ── Email ──────────────────────────────────────────────────────
 		$clean['admin_email']    = isset( $input['admin_email'] ) ? sanitize_email( $input['admin_email'] ) : get_option( 'admin_email' );
 		$clean['show_in_emails'] = ! empty( $input['show_in_emails'] );
+
+		// ── Spam Protection ────────────────────────────────────────────
+		$clean['spam_protection_altcha'] = ! empty( $input['spam_protection_altcha'] );
 
 		// ── Advanced ───────────────────────────────────────────────────
 		if ( isset( $input['eligible_statuses'] ) && is_array( $input['eligible_statuses'] ) ) {

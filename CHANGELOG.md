@@ -1,5 +1,17 @@
 # Changelog
 
+## 1.5.0
+- **ALTCHA spam protection on the public withdrawal form:**
+  Optional, self-hosted, GDPR-friendly proof-of-work CAPTCHA — no
+  third-party calls, no cookies, no tracking. Disabled by default;
+  enable under Withdrawals → Settings → Spam Protection. The challenge
+  is generated server-side (signed with an HMAC secret auto-generated
+  on first use) and verified before any other step-1 validation. The
+  auto-withdraw fast path and step-2 review remain untouched — they
+  already have stronger ownership checks. ALTCHA widget bundled in
+  `assets/js/altcha.min.js` so the plugin makes no outbound network
+  calls at runtime.
+
 ## 1.4.2
 - **Small change to the gobal withdraw form:** 
   Added a header and a short description on how the form shall be used.

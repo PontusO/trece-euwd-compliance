@@ -178,6 +178,15 @@ class Trece_WDEU_Public_Form {
 
 			$errors = [];
 
+			// ALTCHA spam protection — verified before any other validation
+			// so a failed challenge never reveals which field would error.
+			if ( class_exists( 'Trece_WDEU_Altcha' ) && Trece_WDEU_Altcha::is_enabled() ) {
+				$altcha_payload = isset( $_POST['altcha'] ) ? wp_unslash( $_POST['altcha'] ) : '';
+				if ( ! Trece_WDEU_Altcha::verify_solution( $altcha_payload ) ) {
+					$errors[] = __( 'Spam check failed. Please reload the page and try again.', 'trece-withdrawal-eu' );
+				}
+			}
+
 			if ( empty( $_POST['customer_name'] ) ) {
 				$errors[] = __( 'Full name is required.', 'trece-withdrawal-eu' );
 			}
