@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.4.2
+- **Small change to the gobal withdraw form:** 
+  Added a header and a short description on how the form shall be used.
+
 ## 1.4.1
 - **Bug fix and layout change:**
   Fix duplicate Withdrawals menu and consolidate the detail-page layout
